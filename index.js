@@ -2,25 +2,28 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
+const ejs = require('ejs');
 
 ///////////Middlewares////////
 app.use(express.static('public'));
+app.set('view engine','ejs');
 
 app.get('/',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'public','index.html'));
+    res.render('index');
 })
 app.get('/about',(req,res)=>{
-    res.sendFile(path.resolve(__dirname, 'public','about.html'));
+    res.render('about');
 })
 app.get('/post',(req,res)=>{
-    res.sendFile(path.resolve(__dirname, 'public','post.html'));
+    res.render('post');
 })
 app.get('/contact',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'public','contact.html'));
+    res.render('contact');
 })
 app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'public','404.html'))
+    res.render('404');
 })
+
 app.listen(port,()=>{
     console.log(`app is running at port: ${port}`);
 })
