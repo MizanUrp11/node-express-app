@@ -3,6 +3,8 @@ const app = express();
 const path = require("path");
 const port = 3000;
 const ejs = require('ejs');
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/my_database", { useNewUrlParser: true, useUnifiedTopology: true});
 
 ///////////Middlewares////////
 app.use(express.static('public'));
