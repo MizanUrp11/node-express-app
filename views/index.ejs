@@ -16,14 +16,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        
+        <% for(var i = 0; i < blogposts.length; i++){ %>
         <div class="post-preview">
           <a href="post.html">
             <h2 class="post-title">
-              Man must explore, and this is exploration at its greatest
+              <%- blogposts[i].title %>
             </h2>
             <h3 class="post-subtitle">
-              Problems look mighty small from 150 miles up
+              <%- blogposts[i].body %>
             </h3>
           </a>
           <p class="post-meta">Posted by
@@ -31,8 +31,9 @@
             on September 24, 2019</p>
         </div>
         <hr>
+        <% } %>
 
-        
+
         <!-- Pager -->
         <div class="clearfix">
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
