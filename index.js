@@ -24,8 +24,12 @@ app.get('/',async (req,res)=>{
 app.get('/about',(req,res)=>{
     res.render('about');
 })
-app.get('/post',(req,res)=>{
-    res.render('post');
+app.get('/post/:id',async (req,res)=>{
+    await BlogPost.findById(req.params.id,(error,blogpost)=>{
+        res.render('post',{
+            blogpost
+        })
+    })
 })
 app.get('/contact',(req,res)=>{
     res.render('contact');
