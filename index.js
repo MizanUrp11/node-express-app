@@ -31,6 +31,11 @@ app.get('/post/:id',async (req,res)=>{
         })
     })
 })
+app.get('/delete/:id',async (req,res)=>{
+    await BlogPost.findByIdAndDelete(req.params.id,(error,blogpost)=>{
+        res.redirect('/');
+    })
+})
 app.get('/contact',(req,res)=>{
     res.render('contact');
 })
