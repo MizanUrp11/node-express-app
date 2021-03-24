@@ -39,6 +39,24 @@ app.get('/delete/:id',async (req,res)=>{
         res.redirect('/');
     })
 })
+
+var id;
+app.get('/update/:id',async (req,res)=>{
+    id = req.params.id;
+    await BlogPost.findById(req.params.id,(error,blogpost)=>{
+        res.render('update',{
+            blogpost
+        });
+    })
+})
+app.post('/post/update',(req,res)=>{
+    BlogPost.findByIdAndUpdate(id,{
+        title: req.body.title,
+        body: req.body.body
+    },(error,blogpost)=>{
+        res.redirect('/');
+    })
+})
 app.get('/contact',(req,res)=>{
     res.render('contact');
 })
