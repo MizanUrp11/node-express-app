@@ -24,6 +24,9 @@ app.get('/',async (req,res)=>{
 app.get('/about',(req,res)=>{
     res.render('about');
 })
+app.get('/post/new', (req, res) => {
+    res.render('create');
+})
 app.get('/post/:id',async (req,res)=>{
     await BlogPost.findById(req.params.id,(error,blogpost)=>{
         res.render('post',{
@@ -39,13 +42,11 @@ app.get('/delete/:id',async (req,res)=>{
 app.get('/contact',(req,res)=>{
     res.render('contact');
 })
-app.get('/post/new',(req,res)=>{
-    res.render('create');
-})
-app.post('/post/store',async (req,res)=>{
-    await BlogPost.create(req.body,(error,blogpost)=>{
+
+app.post('/post/store',(req,res)=>{
+    BlogPost.create(req.body,(error,blogspot)=>{
         res.redirect('/');
-    })
+    });
 });
 app.get('*',(req,res)=>{
     res.render('404');

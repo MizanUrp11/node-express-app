@@ -6,5 +6,5 @@ const BlogSchema = new Schema({
     body: String
 })
 
-BlogPost = mongoose.model = mongoose.model('BlogPost',BlogSchema);
+const BlogPost = mongoose.model('BlogPost',BlogSchema);
 module.exports = BlogPost;
