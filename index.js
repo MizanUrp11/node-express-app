@@ -34,7 +34,7 @@ app.get('/',async (req,res)=>{
 app.get('/about',(req,res)=>{
     res.render('about');
 })
-app.get('/post/new', (req, res) => {
+app.get('/addpost', (req, res) => {
     res.render('create');
 })
 app.get('/post/:id',async (req,res)=>{
