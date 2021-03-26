@@ -14,13 +14,7 @@ const getPostController = require("./controllers/getPostController");
 const updateContoller = require("./controllers/updateContoller");
 const getInfoController = require("./controllers/getInfoController");
 const deletePostController = require("./controllers/deletePostController");
-
-const validateMiddleware = (req,res,next)=>{
-    if(req.body.title == null || req.body.body == null || req.files == null){
-        res.redirect('/post/new');
-    }
-    next();
-}
+const validateMiddleware = require("./middlewares/validateMiddleware");
 
 ///////////Middlewares////////
 app.use(express.static('public'));
