@@ -9,11 +9,19 @@ const bodyParser = require("body-parser");
 const BlogPost = require("./models/BlogPost");
 const fileUpload = require("express-fileupload");
 
+const validateMiddleware = (req,res,next)=>{
+    if(req.body.title == null || req.body.body == null || req.files == null){
+        res.redirect('/post/new');
+    }
+    next();
+}
+
 ///////////Middlewares////////
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
+app.use('/post/new', validateMiddleware);
 app.set('view engine','ejs');
 
 app.get('/',async (req,res)=>{
