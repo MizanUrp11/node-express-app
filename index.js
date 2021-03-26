@@ -7,11 +7,13 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/my_database", { useNewUrlParser: true, useUnifiedTopology: true});
 const bodyParser = require("body-parser");
 const BlogPost = require("./models/BlogPost");
+const fileUpload = require("express-fileupload");
 
 ///////////Middlewares////////
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(fileUpload());
 app.set('view engine','ejs');
 
 app.get('/',async (req,res)=>{
@@ -61,10 +63,15 @@ app.get('/contact',(req,res)=>{
     res.render('contact');
 })
 
-app.post('/post/store',(req,res)=>{
-    BlogPost.create(req.body,(error,blogspot)=>{
+app.post('/post/store', (req,res)=>{
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname,'public/img',image.name),async (error)=>{
+        await BlogPost.create({
+            ...req.body,
+            image:'/img/'+image.name
+        });
         res.redirect('/');
-    });
+    })
 });
 app.get('*',(req,res)=>{
     res.render('404');
