@@ -15,6 +15,9 @@ const updateContoller = require("./controllers/updateContoller");
 const getInfoController = require("./controllers/getInfoController");
 const deletePostController = require("./controllers/deletePostController");
 const validateMiddleware = require("./middlewares/validateMiddleware");
+const newUserController = require("./controllers/newUserController");
+const storeUserController = require("./controllers/storeUserController");
+const User = require("./models/User");
 
 ///////////Middlewares////////
 app.use(express.static('public'));
@@ -40,6 +43,12 @@ app.get('/contact',(req,res)=>{
 })
 
 app.post('/post/store', storePostController);
+
+app.get('/auth/register',(req,res)=>{
+    res.render('register');
+})
+app.post('/user/register',storeUserController);
+
 app.get('*',(req,res)=>{
     res.render('404');
 })

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/head'); -%>
+
+<body>
+
+  <!-- Navigation -->
+  <%- include('layouts/navbar'); -%>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Register</h1>
+            <span class="subheading">Register a New Account</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form action="/user/register" method="POST">
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+              <label for="username">Username</label>
+              <input name="username" type="text" class="form-control" placeholder="Enter username" id="username" required data-validation-required-message="Please enter username.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+              <label for="password">Password</label>
+              <input name="password" type="text" class="form-control" placeholder="Enter password" id="password" required data-validation-required-message="Please enter password.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+         
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <%- include('layouts/footer'); -%>
+
+  <!-- Bootstrap core JavaScript -->
+  <%- include('layouts/scripts'); -%>
+
+</body>
+
+</html>
