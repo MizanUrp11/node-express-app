@@ -18,6 +18,7 @@ const validateMiddleware = require("./middlewares/validateMiddleware");
 const newUserController = require("./controllers/newUserController");
 const storeUserController = require("./controllers/storeUserController");
 const User = require("./models/User");
+const loginController = require("./controllers/loginController");
 
 ///////////Middlewares////////
 app.use(express.static('public'));
@@ -47,6 +48,11 @@ app.post('/post/store', storePostController);
 app.get('/auth/register',(req,res)=>{
     res.render('register');
 })
+app.get('/auth/login', (req,res)=>{
+    res.render('login');
+});
+app.post('/user/login', loginController);
+
 app.post('/user/register',storeUserController);
 
 app.get('*',(req,res)=>{
