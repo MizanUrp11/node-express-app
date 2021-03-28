@@ -5,6 +5,7 @@ module.exports = (req,res)=>{
         if(error){
             console.log('username already taken');
             const validationErrors = Object.keys(error.errors).map(key=>error.errors[key].message);
+            //req.flash('validationErrors', validationErrors);
             req.session.validationErrors = validationErrors;
             return res.redirect('/auth/register');
         }

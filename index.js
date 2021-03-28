@@ -6,6 +6,7 @@ mongoose.connect("mongodb://localhost/my_database", { useNewUrlParser: true, use
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
+const flash = require("connect-flash");
 
 /////////Controllers////////////////
 const addPostController = require("./controllers/addPostController");
@@ -33,12 +34,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
 app.use('/post/new', validateMiddleware);
 app.use(expressSession({secret: 'keyboard cat'}));
+app.use(flash());
 
 global.loggedIn = null;
 app.use('*', (req, res, next)=>{
     loggedIn = req.session.userId;
     next();
 })
+
 app.set('view engine','ejs');
 
 app.get('/', homeController);

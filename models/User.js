@@ -6,12 +6,12 @@ const uniqueValidator = require("mongoose-unique-validator");
 const userSchema = new Schema({
     username: {
         type:String,
-        required:true,
+        required: [true,'Please provide username'],
         unique:true
     },
     password:{
         type: String,
-        required: true,
+        required: [true, 'Please provide Password']
     }
 });
 userSchema.plugin(uniqueValidator);
