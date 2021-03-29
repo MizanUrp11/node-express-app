@@ -4,6 +4,11 @@ const Schema = mongoose.Schema;
 const BlogSchema = new Schema({
     title: String,
     body: String,
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     datePosted:{
         type: Date,
         default: new Date()
