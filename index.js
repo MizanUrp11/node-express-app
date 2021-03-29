@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(fileUpload());
 app.use('/post/new', validateMiddleware);
-app.use(expressSession({secret: 'keyboard cat'}));
+app.use(expressSession({ secret: 'keyboard cat'}));
 app.use(flash());
 
 global.loggedIn = null;
