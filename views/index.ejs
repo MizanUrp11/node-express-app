@@ -19,7 +19,7 @@
         
         <% for(var i = 0; i < blogposts.length; i++){ %>
         <div class="post-preview">
-          <a href="/post/<%- blogposts[i].id %>">
+          <a href="/post/<%- blogposts[i]._id %>">
             <h2 class="post-title">
               <%- blogposts[i].title %>
             </h2>
@@ -27,8 +27,8 @@
               <%- blogposts[i].body %>
             </h3>
           </a>
-          <a href="/delete/<%- blogposts[i].id %>" class="btn btn-danger">Delete</a>
-          <a href="/update/<%- blogposts[i].id %>" class="btn btn-warning">Update</a>
+          <a href="/delete/<%- blogposts[i]._id %>" class="btn btn-danger">Delete</a>
+          <a href="/update/<%- blogposts[i]._id %>" class="btn btn-warning">Update</a>
           <p class="post-meta">Posted by
             <a href="#"><%= blogposts[i].userId.username %></a>
             on September 24, 2019</p>
