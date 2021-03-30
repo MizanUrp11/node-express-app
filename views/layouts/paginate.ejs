@@ -1,0 +1,21 @@
+<% if(paginate.hasPreviousPages || paginate.hasNextPages(pageCount)){ %>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <% if(paginate.hasPreviousPages){ %>
+        <li class="page-item">
+            <a class="page-link" href="<%= paginate.href(true) %>" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <% } %>
+        <% if(pages){ %>
+            <% for(var i=0; i < pages.length; i++){ %>
+            <li class="page-item"><a class="page-link" href="<%= pages[i].url %>"><%= pages[i].number %></a></li>
+            <% } %>
+        <% } %>
+        <% if(paginate.hasNextPages(pageCount)){ %>
+        <li class="page-item">
+            <a class="page-link" href="<%= paginate.href() %>">Next</a>
+        </li>
+        <% } %>
+    </ul>
+</nav>
+<% } %>

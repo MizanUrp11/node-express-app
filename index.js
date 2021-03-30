@@ -1,4 +1,5 @@
 const express = require("express");
+const paginate = require("express-paginate");
 const app = express();
 const port = 3000;
 const mongoose = require("mongoose");
@@ -26,6 +27,7 @@ const redirectIfAuthenticatedMiddleware = require("./middlewares/redirectIfAuthe
 const viewLoginPageController = require("./controllers/viewLoginPageController");
 const viewRegisterPageController = require("./controllers/viewRegisterPageController");
 const logoutController = require("./controllers/logoutController");
+const paginationMiddleware = require("./middlewares/paginationMiddleware");
 
 ///////////Middlewares////////
 app.use(express.static('public'));
@@ -41,10 +43,10 @@ app.use('*', (req, res, next)=>{
     loggedIn = req.session.userId;
     next();
 })
-
+app.use(paginate.middleware(2,50));
 app.set('view engine','ejs');
 
-app.get('/', homeController);
+app.get('/',paginationMiddleware, homeController);
 app.get('/about',(req,res)=>{
     res.render('about');
 })
